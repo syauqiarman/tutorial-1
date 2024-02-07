@@ -38,15 +38,14 @@ public class ProductController {
 
     @GetMapping(value = "/edit/{productId}")
     public String editProductPage(@PathVariable("productId") String productId, Model model) {
-        Product product = new Product();
-        product.setProductId(productId);
+        Product product = service.findId(productId);
         model.addAttribute("product", product);
         return "editProduct"; 
     }
 
     @PostMapping("/update")
     public String editProductPost(@ModelAttribute Product product, Model model) {
-        service.edit(product);
+        service.update(product);
         return "redirect:list"; 
     }
 
