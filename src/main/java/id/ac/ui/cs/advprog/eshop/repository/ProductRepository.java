@@ -22,11 +22,9 @@ public class ProductRepository {
         return productData.iterator();
     }
 
-    public Product edit(Product product) {
+    public Product findId(String productId) {
         for (Product thisProduct : productData) {
-            if (thisProduct.getProductId().equals(product.getProductId())) {
-                thisProduct.setProductQuantity(product.getProductQuantity());
-                thisProduct.setProductName(product.getProductName());
+            if (thisProduct.getProductId().equals(productId)) {
                 return thisProduct;
             }
         }
