@@ -63,4 +63,59 @@ class ProductRepositoryTest {
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
     }
+
+    @Test
+    void testEditExistProduct() {
+        Product product = new Product();
+        product.setProductId("123");
+        product.setProductName("Sabun ABC");
+        product.setProductQuantity(10);
+        productRepository.create(product);
+
+        Product editProduct = productRepository.findId(product.getProductId());
+        editProduct.setProductId("123");
+        editProduct.setProductName("Sabun Indoclean");
+        editProduct.setProductQuantity(5);
+        productRepository.update(product);
+
+        Product result = productRepository.findId("123");
+        assertEquals(result.getProductId(), "123");
+        assertEquals(result.getProductName(), "Sabun Indoclean");
+        assertEquals(result.getProductQuantity(), 5);
+    }
+
+    @Test
+    void testEditNonExistProduct() {
+        Product product = new Product();
+        product.setProductName("Sendal selow");
+        product.setProductQuantity(10);
+        productRepository.update(product);
+
+        assertNull(productRepository.findId(product.getProductId()));
+    }
+
+    @Test
+    void testDeleteExistProduct(){
+        Product product = new Product();
+        product.setProductId("234");
+        product.setProductName("Baju baja");
+        product.setProductQuantity(10);
+        productRepository.create(product);
+
+        productRepository.deleteProduct(product.getProductId());
+        Iterator<Product> iterator = productRepository.findAll();
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    void testDeleteNonExistProduct(){
+        Product product = new Product();
+        product.setProductId("345");
+        product.setProductName("Baju aja");
+        product.setProductQuantity(10);
+
+        productRepository.deleteProduct(product.getProductId());
+        Iterator<Product> iterator = productRepository.findAll();
+        assertFalse(iterator.hasNext());
+    }
 }
