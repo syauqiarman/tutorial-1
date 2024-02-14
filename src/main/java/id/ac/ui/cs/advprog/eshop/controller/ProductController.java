@@ -12,9 +12,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-    private static final String REDIRECT_LIST = "redirect:list";
+    
     @Autowired
     private ProductService service;
+    private static final String REDIRECT_LIST = "redirect:list";
     
     @GetMapping("/create")
     public String createProductPage(Model model) {
