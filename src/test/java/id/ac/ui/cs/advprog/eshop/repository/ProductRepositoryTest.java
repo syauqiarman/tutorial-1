@@ -102,9 +102,9 @@ class ProductRepositoryTest {
         productRepository.update(product);
 
         Product result = productRepository.findId("123");
-        assertEquals(result.getProductId(), "123");
-        assertEquals(result.getProductName(), "Sabun Indoclean");
-        assertEquals(result.getProductQuantity(), 5);
+        assertEquals("123", result.getProductId());
+        assertEquals("Sabun Indoclean", result.getProductName());
+        assertEquals(5, result.getProductQuantity());
     }
 
     @Test
