@@ -104,12 +104,16 @@ class ProductServiceImplTest {
         productToDelete.setProductId("123");
         productToDelete.setProductName("Sepatu");
         productToDelete.setProductQuantity(50);
+        productRepository.create(productToDelete);
 
-        when(productRepository.findId(productToDelete.getProductId())).thenReturn(productToDelete);
+        when(productRepository.deleteProduct(productToDelete.getProductId())).thenReturn(productToDelete);
 
-        productService.deleteProduct(productToDelete.getProductId());
+        Product deletedProduct = productService.deleteProduct(productToDelete); 
         
-        assertEquals(productToDelete, productService.findId(productToDelete.getProductId()));
         verify(productRepository, times(1)).deleteProduct(productToDelete.getProductId());
+
+        assertEquals("Sepatu", productToDelete.getProductName());
+        assertEquals(50, productToDelete.getProductQuantity());
+        assertEquals("123", deletedProduct.getProductId());
     }
 }

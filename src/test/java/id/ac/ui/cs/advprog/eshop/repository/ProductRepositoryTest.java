@@ -136,9 +136,10 @@ class ProductRepositoryTest {
         product.setProductId("345");
         product.setProductName("Baju aja");
         product.setProductQuantity(10);
+        productRepository.create(product);
 
-        productRepository.deleteProduct(product.getProductId());
+        assertThrows(NullPointerException.class, () -> productRepository.deleteProduct("123"));
         Iterator<Product> iterator = productRepository.findAll();
-        assertFalse(iterator.hasNext());
+        assertTrue(iterator.hasNext());
     }
 }

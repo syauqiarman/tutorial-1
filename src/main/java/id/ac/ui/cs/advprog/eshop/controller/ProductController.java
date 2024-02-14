@@ -16,7 +16,7 @@ public class ProductController {
     @Autowired
     private ProductService service;
     private static final String REDIRECT_LIST = "redirect:list";
-    
+
     @GetMapping("/create")
     public String createProductPage(Model model) {
         Product product = new Product();
@@ -52,7 +52,7 @@ public class ProductController {
 
     @GetMapping("/delete/{productId}")
     public String deleteProduct(@PathVariable ("productId") String productId, Model model){
-        service.deleteProduct(productId);
+        service.deleteProduct(service.findId(productId));
         return "redirect:../list";
     }
 }
