@@ -65,6 +65,29 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void testFindByIdExist() {
+        Product product1 = new Product();
+        product1.setProductId("123");
+        product1.setProductName("Semen");
+        product1.setProductQuantity(10);
+        productRepository.create(product1);
+
+        Product product2 = new Product();
+        product2.setProductId("234");
+        product2.setProductName("Pasir");
+        product2.setProductQuantity(5);
+        productRepository.create(product2);
+
+        assertNull(productRepository.findId("345"));
+        assertNotNull(productRepository.findId(product1.getProductId()));
+    }
+
+    @Test
+    void testFindByIdNoExist() {
+        assertNull(productRepository.findId("e2d9c3f5-6a7b-4c8d-9a5e-1f7b8c9d0a2b"));
+    }
+
+    @Test
     void testEditExistProduct() {
         Product product = new Product();
         product.setProductId("123");
