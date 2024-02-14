@@ -31,21 +31,22 @@ public class ProductRepository {
         return null;
     }
 
-    public void update(Product product) {
+    public Product update(Product product) {
         for (int i = 0; i < productData.size(); i++) {
             if (productData.get(i).getProductId().equals(product.getProductId())) {
                 productData.set(i, product);
-                return;
             }
         }
+        return product;
     }
 
-    public void deleteProduct(String id) {
+    public Product deleteProduct(String id) throws NullPointerException{
         for (Product product : productData) {
             if (product.getProductId().equals(id)) {
                 productData.remove(product);
-                return;
+                return product;
             }
         }
+        throw new NullPointerException("Product not found");
     }
 }
