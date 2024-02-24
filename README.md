@@ -34,3 +34,22 @@ Deployment Link: [Eshop](https://tutorial-prolan-syauqiarman.koyeb.app/)
     - Mendefinisikan variabel constant untuk return redirect *url* pada `ProductController.java` karena dipakai berulang.
 
 2. Menurut saya, implementasi yang telah saya lakukan pada workflows telah memenuhi CI/CD, karena Continuous Integration yang ada mencakup code dan testnya, selain itu, Continous Delivery telah menangani bagiannya dalam deployment. Adapun workflows yang menangani CI/CD, yakni `ci.yml` untuk melakukan automatic testing ketika push dan pull request ke salah satu branch. Lalu `scorecard.yml` dan `sonarcloud.yml` digunakan untuk mengecek kebersihan dari kode yang ada. Selain itu, saya menggunakan Koyeb PaaS untuk proses deployment yang didalamnya juga sudah mengimplementasikan CI/CD bawaan untuk memproses push dan pull request branch tertentu.
+
+# Module 3
+
+**Reflection** <br>
+
+1. SOLID Principles yang sudah diterapkan:
+* Single Responsibility Principle (SRP)
+Saya melakukan pemisahan antara `CarController` dan `ProductController` agar dalam satu file hanya ada satu class controller. Lalu saya melakukan simplifikasi pada method update di file `CarRepository` dengan mengganti penggunaan loop untuk mencari car yang sesuai dengan yang ingin diubah menjadi menggunakan method `FindById` yang ada untuk memanfaatkannya.
+* Interface Segregation Principle (ISP)
+Pada dasarnya ISP adalah prinsip dimana interface sebaiknya tidak boleh terlalu besar dan harus dipisah menjadi beberapa bagian yang spesifik. Saya malakukan pemisahan antara interface `CarService` dan `ProductService` karena memiliki sifat yang berbeda. Jika saya menggabungkannya, maka dikhawatirkan interface akan memiliki beban yang besar, dimana sebenarnya tidak dari semua method itu diperlukan saat implementasinya, dikarenakan perbedaan sifatnya.
+* Dependency Inversion Principle (DIP)
+Saya melakukan prinsip DIP pada file `CarController` dengan mengubah penggunaan konkret dari `CarServiceImpl` dengan interface `CarService` untuk mencegah hal yang tidak diinginkan ketika saya mengubah sesuatu di `CarServiceImpl`.
+
+2. Keuntungan menerapkan SOLID principles:
+Saya merasa dengan menerapkan SOLID principles seperti contohnya SRP dan DIP yang memisahkan beberapa module sesuai dengan sifatnya, maka kode akan terlihat menjadi lebih bersih, rapi, dan mudah dibaca sehingga jika suatu hari ingin dilakukan perbaikan atau dikembangkan akan sangat mempercepat dan memudahkan. Contohnya yakni saat kita ingin melakukan pengubahan pada file `CarController` maka kita hanya akan bergantung dengan interface `CarService` dibandingkan dengan modul yang konkret. Selain itu, kode juga menjadi lebih fleksibel atas segala perubahan karena terfokus pada abstraksi dan berusaha untuk memisahkan ketergantungan antar kode, seperti pada file `CarServic`e dan `ProductService` yang memiliki sifat yang berbeda, sehingga lebih baik dipisahkan dibanding harus disatukan, karena tidak semua implementasi didalamnya akan digunakan.
+
+3. Kekurangan yang dirasakan jika tidak menerapkan SOLID principles:
+
+Jika tidak mengimplementasikan SOLID principles, maka akan terdapat banyak kerugian. Contohnya seperti sulitnya memelihara kode, karena kode yang ada sulit dibaca dan dimengerti yang tentunya akan menghambat pekerjaan. Selain itu, kita menjadi khawatir atas apa yang kita lakukan pada kode tersebut, karena pastinya akan berdampak pada kode-kode lainnya, karena banyaknya keterkaitan antara kode satu dan kode lainnya dan akan menjadi permasalahan baru. Contohnya jika di `CarController` masih bergantung pada `CarServiceImpl`, maka setiap ada perubahan di `CarServiceImpl` akan berdampak langsung dan mengakibatkan kerusakan pada `CarController`.
