@@ -2,6 +2,8 @@ package id.ac.ui.cs.advprog.eshop.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,6 +37,17 @@ class PaymentTest {
 
         order = new Order("eb558e9f-1c39-460e-8860-71af6af63bd6", 
             products, 1708560000L, "Tatang Gepeng");
+    }
+
+    @Test
+    void testContainsWithValidParam() {
+        assertTrue(PaymentMethod.contains("VOUCHER_CODE"));
+        assertTrue(PaymentMethod.contains("BANK_TRANSFER"));
+    }
+
+    @Test
+    void testContainsWithInvalidParam() {
+        assertFalse(PaymentMethod.contains("INVALID_CODE"));
     }
 
     @Test
