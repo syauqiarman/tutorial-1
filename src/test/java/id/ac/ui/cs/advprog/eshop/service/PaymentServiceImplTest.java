@@ -25,7 +25,7 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
-class PaymentServiceTest {
+class PaymentServiceImplTest {
     @InjectMocks
     PaymentServiceImpl paymentService;
 
