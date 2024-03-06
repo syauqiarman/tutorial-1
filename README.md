@@ -53,3 +53,11 @@ Saya merasa dengan menerapkan SOLID principles seperti contohnya SRP dan DIP yan
 3. Kekurangan yang dirasakan jika tidak menerapkan SOLID principles:
 
 Jika tidak mengimplementasikan SOLID principles, maka akan terdapat banyak kerugian. Contohnya seperti sulitnya memelihara kode, karena kode yang ada sulit dibaca dan dimengerti yang tentunya akan menghambat pekerjaan. Selain itu, kita menjadi khawatir atas apa yang kita lakukan pada kode tersebut, karena pastinya akan berdampak pada kode-kode lainnya, karena banyaknya keterkaitan antara kode satu dan kode lainnya dan akan menjadi permasalahan baru. Contohnya jika di `CarController` masih bergantung pada `CarServiceImpl`, maka setiap ada perubahan di `CarServiceImpl` akan berdampak langsung dan mengakibatkan kerusakan pada `CarController`.
+
+# Module 4
+
+**Reflection** <br>
+
+1. Bagi saya, metode TDD sangat bermanfaat karena memberikan struktur yang jelas dalam melakukan pengembangan perangkat lunak. Dalam metode TDD, langkah-langkahnya terbagi menjadi tiga fase, yaitu [RED], [GREEN], dan [REFACTOR]. Dengan pendekatan ini, saya dapat lebih mudah mengimplementasikan kelas karena semua kasus uji telah dipertimbangkan, baik yang positif maupun yang negatif. Sehingga memastikan bahwa kode yang dihasilkan lebih andal dan mempermudah proses penyempurnaan selanjutnya.
+
+2. Dalam tutorial ini, unit test yang telah saya buat telah memenuhi prinsip F.I.R.S.T karena algoritma yang telah dirancang khusus untuk suatu metode dan tidak menyentuh metode lainnya. Pada pengujian layanan, saya juga menggunakan mock untuk memastikan bahwa tidak ada pengaruh pada kode aslinya. Selain itu, saya telah menambahkan asersi pada setiap hasil pengujian untuk memeriksa semua kemungkinan dengan baik. Setiap pengujian juga dirancang dengan cermat untuk mencakup semua skenario "happy" dan "unhappy" yang mungkin terjadi pada metode yang diuji.
